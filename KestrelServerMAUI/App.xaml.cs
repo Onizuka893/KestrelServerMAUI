@@ -1,7 +1,7 @@
-﻿using ClientDependency.Core;
+﻿
+using System.Net;
 using KestrelServerMAUI.KestrelWebHost;
 using Microsoft.AspNetCore.Hosting;
-using System.Net;
 
 namespace KestrelServerMAUI;
 
@@ -26,7 +26,7 @@ public partial class App : Application
 		{
 			try
 			{
-				await Program.Main(WebHostParameters);
+				await KestrelMauiBlazor.KestrelWebHost.Program.Main(WebHostParameters);
 			}
 			catch (Exception ex)
 			{

@@ -1,5 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 using System.Net;
+using System.Net.Sockets;
 
 namespace KestrelServerMAUI
 {
@@ -12,21 +13,16 @@ namespace KestrelServerMAUI
 				.Where(network => network.OperationalStatus == OperationalStatus.Up &&
 					(network.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
 						network.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) &&
-					network.GetIPProperties().UnicastAddresses
-						.Where(ai => ai.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-						.Count() > 0)
+					network.GetIPProperties().UnicastAddresses.Any(ai => ai.Address.AddressFamily == AddressFamily.InterNetwork))
 				.ToArray();
-			if (networkInterfaces.Count() == 0)
+			if (!networkInterfaces.Any())
 				return null;
 
-			var addressInfos = networkInterfaces[0].GetIPProperties().UnicastAddresses
+			var addressInfos = networkInterfaces[1].GetIPProperties().UnicastAddresses
 				.Where(ai => ai.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork &&
 					!ai.Address.ToString().StartsWith("169"))
 				.ToArray();
-			if (addressInfos.Count() == 0)
-				return null;
-
-			return addressInfos[0].Address;
+			return !addressInfos.Any() ? null : addressInfos[0].Address;
 		}
 	}
 }
