@@ -50,6 +50,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="ClientDependency" Version="1.9.10" />
+	  <PackageReference Include="EmbedIO" Version="3.5.2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
 	  <PackageReference Include="Xamarinme.Configuration" Version="1.0.2" />
 	  <PackageReference Include="Xamarinme.Hosting" Version="1.0.3" />
 	  <PackageReference Include="Xamarinme.WebHostPatch" Version="1.0.0" />

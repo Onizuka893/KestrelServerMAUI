@@ -21,7 +21,6 @@ namespace KestrelServerMAUI.KestrelWebHost
 				context.Request.EnableBuffering();
 				await next();
 			});
-			app.Run(WebApp.OnHttpRequest);
 		}
 	}
 }
